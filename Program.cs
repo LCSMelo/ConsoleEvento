@@ -73,7 +73,6 @@ namespace ProjetoEventoConsole
                         Console.Write("Digite o genero musical do Show: ");
                         string generomusical = Console.ReadLine();
                         
-                        
                         Show show = new Show(titulo, local, lotacao, duracao, classificacao, data, artista, generomusical);
 
                         show.Cadastrar();
@@ -88,26 +87,45 @@ namespace ProjetoEventoConsole
 
                     case "2":
                     {
-                        System.Console.Write("Digite o títudo do show: ");
-                        string titulo = Console.ReadLine();
-                        Show show = new Show();
-                        show.Pesquisar(titulo);
-                        string resultado = show.Pesquisar(titulo);
-                        Console.WriteLine(resultado);
-                        break;
-                    }
+                        Console.WriteLine("Como deseja realizar a pesquisa? ");
+                        Console.WriteLine("1 - Título do show.");
+                        Console.WriteLine("2 - Data do show.");
 
+                        string pesquisa1 = "";
+                        pesquisa1 = Console.ReadLine();
+                        switch (pesquisa1)
+                        {
+                            case "1":
+                            {
+                                Console.Write("Digite o títudo do show: ");
+                                string titulo = Console.ReadLine();
+                                Show show = new Show();
+                                show.Pesquisar(titulo);
+                                string resultado = show.Pesquisar(titulo);
+                                Console.WriteLine(resultado);
+                                break;
+                            }
+                            case "2":
+                            {
+                                Console.Write("Digite a data do Show: ");
+                                DateTime data = Convert.ToDateTime(Console.ReadLine());
+                                Show show = new Show();
+                                string resultado = show.Pesquisar(data);
+                                Console.WriteLine(resultado);
+                                break;
+                            }
+                            default: Console.WriteLine("Nenhum show encontrado");
+                                break;
+                        }
+                            break;
+                    }
                     case "3":
                     {
-                        Console.Write("Digite a data do Show: ");
-                        DateTime data = Convert.ToDateTime(Console.ReadLine());
-                        Show show = new Show();
-                        string resultado = show.Pesquisar(data);
-                        Console.WriteLine(resultado);
+                        
                         break;
                     }
                         
-                    default: Console.WriteLine("Opção Inválida");
+                    default: Console.WriteLine("Opção Inválida.");
                         break;
                 }      
             } while (opcao != "9");
