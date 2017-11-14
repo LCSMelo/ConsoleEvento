@@ -8,8 +8,9 @@ namespace ProjetoEventoConsole
         static void Main(string[] args)
         {
             string opcao = "";
-
-            do{
+            do
+            {
+                System.Console.WriteLine("Seja bem-vindo(a) ao Sistema de Ingressos Code-XP.");
                 Console.WriteLine("Digite a opção desejada:");
                 Console.WriteLine("1 - Show.");
                 Console.WriteLine("2 - Teatro.");
@@ -25,22 +26,26 @@ namespace ProjetoEventoConsole
                         break;
                     
                     case "2":
-                        Teatro();
+                        OpcaoTeatro();
                         break;
                         
                     case "3":
                         Cinema();
                         break;                    
 
+                    case "9":
+                        System.Console.WriteLine("Obrigado por usar nosso sistema.");
+                        System.Console.WriteLine("Volte sempre!");
+                        break;                    
+                    
                     default:
                         Console.WriteLine("Opção Inválida");
                         break;
                 }
             }    
             while(opcao != "9");     
-        
         }
-    
+            
         static void OpcaoShow(){
 
             string opcao = "";
@@ -90,6 +95,7 @@ namespace ProjetoEventoConsole
                         Console.WriteLine("Como deseja realizar a pesquisa? ");
                         Console.WriteLine("1 - Título do show.");
                         Console.WriteLine("2 - Data do show.");
+                        Console.WriteLine("9 - Voltar.");
 
                         string pesquisa1 = "";
                         pesquisa1 = Console.ReadLine();
@@ -119,28 +125,107 @@ namespace ProjetoEventoConsole
                         }
                             break;
                     }
-                    case "3":
+                    case "9":
                     {
-                        
-                        break;
+                        return;
                     }
                         
                     default: Console.WriteLine("Opção Inválida.");
                         break;
                 }      
-            } while (opcao != "9");
+            } while (opcao != "0");
         }
 
-        static void Teatro(){
+        static void OpcaoTeatro(){
+            
+            string opcao = "";
+            do
+            {
+                System.Console.WriteLine("Digite a opção desejada:");
+                System.Console.WriteLine("1 - Cadastrar peça de teatro.");
+                System.Console.WriteLine("2 - Pesquisar peça de teatro");
+                System.Console.WriteLine("3 - Votlar.");
 
+                opcao = Console.ReadLine();
+                switch(opcao)
+                {
+                    case "1":
+                    {
+                        
+                        Console.Write("Digite o título da peça:");
+                        string titulo = Console.ReadLine();
+                        Console.Write("Digite o local da peça:");
+                        string local = Console.ReadLine();
+                        Console.Write("Digite a lotação do local:");
+                        int lotacao = Convert.ToInt16(Console.ReadLine());
+                        Console.Write("Digite a duração da peça(min):");
+                        string duracao = Console.ReadLine();
+                        Console.Write("Digite a classificação indicativa da peça:");
+                        int classificacao = Convert.ToInt16(Console.ReadLine());
+                        Console.Write("Digite a data da peça:");
+                        DateTime data = Convert.ToDateTime(Console.ReadLine());
+                        Console.Write("Digite o elenco da peça:");
+                        string elenco = Console.ReadLine();
+                        Console.Write("Digite o diretor da peça:");
+                        string diretor = Console.ReadLine();
+
+                        Teatro teatro = new Teatro(titulo, local, lotacao, duracao, classificacao, data, elenco, diretor);
+
+                        teatro.Cadastrar();
+
+                        bool cadastrosucesso = teatro.Cadastrar();
+                        if(cadastrosucesso)
+                            Console.WriteLine("Peça cadastrada com sucesso.");
+                        else
+                            Console.WriteLine("Ocorreu um erro, contate o administrador do sistema.");
+                        break;
+                    }
+
+                    case "2":
+                    {
+                        Console.WriteLine("Como deseja realizar");
+                        Console.WriteLine("1 - Título da peça.");
+                        Console.WriteLine("2 - Data da apresentação.");
+                        Console.WriteLine("3 - Voltar.");
+
+                        string pesquisa1 = "";
+                        pesquisa1 = Console.ReadLine();
+                        
+                        switch (pesquisa1)
+                        {
+                            case "1":
+                            {
+                                Console.Write("Digite o título da peça: ");
+                                string titulo = Console.ReadLine();
+                                Teatro teatro = new Teatro();
+                                teatro.Pesquisar(titulo);
+                                string resultado = teatro.Pesquisar(titulo);
+                                Console.WriteLine(resultado);
+                                break;
+                            }
+                            case "2":
+                                Console.Write("Digite a data da peça (dd: ");
+                                DateTime data = Convert.ToDateTime(Console.rea)   
+                            default:
+
+                                break;
+                        }
+
+                        break;
+                    }
+                
+                }
+            }
+            while (true);
+            {
+                
+            }
+            
         }
 
         static void Cinema(){
 
         }
-    
     }
-
-
 }
 
